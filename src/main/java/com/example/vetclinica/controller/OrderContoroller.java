@@ -58,7 +58,7 @@ public class OrderContoroller {
         orderRepos.save(order);
         if (user.getEmail() != null) {
             String message = String.format(
-                    "Ваш заказ принят. Вас принимает %s %s\n" +
+                    "Ваш заказ принят. Вас принимает %s %s.\n" +
                             "Услуги: %s",
                     employee.getFio(),
                     time,

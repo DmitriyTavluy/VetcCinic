@@ -7,9 +7,8 @@
     <table class="table table-striped table-bordered">
         <thead class="thead-inverse">
         <tr>
-            <th>Иия пользователя</th>
+            <th>Имя пользователя</th>
             <th>Роль</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -25,7 +24,21 @@
                     <form action="/user/delete" method="post">
                         <input type="hidden" name="id" value="${user.id}">
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                        <input type="submit" class="btn btn-primary" value="Удалить">
+                        <input type="submit" class="btn btn-link" value="Удалить">
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="/user/blockUser">
+                        <input type="hidden" value="${user.id}" name="id">
+                        <input type="hidden" value="${_csrf.token}" name="_csrf">
+                        <button type="submit" class="btn btn-link">Заблокировать</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="/user/unblockUser">
+                        <input type="hidden" value="${user.id}" name="id">
+                        <input type="hidden" value="${_csrf.token}" name="_csrf">
+                        <button type="submit" class="btn btn-link">Разблокировать</button>
                     </form>
                 </td>
             </tr>

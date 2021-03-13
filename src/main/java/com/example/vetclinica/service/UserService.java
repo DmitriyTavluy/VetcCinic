@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
@@ -25,6 +26,11 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepos userRepos;
+
+    @Transactional
+    public User saveUsers(User user){
+        return userRepos.save(user);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -47,8 +53,8 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())){
             String message = String.format(
 
-                    "ЗДАРОВА, %s! \n" +
-                            "Потвердите свою почту : http;//localhost:8080/activate/%s",
+                    "Здравствуйте, %s! \n" +
+                            "Вы зарегистрировались на сайте http;//localhost:8080/activate/%s\nПодтвердите свои данные.",
             user.getUsername(),
             user.getActivationCode());
             mailSender.send(user.getEmail(),"Activation code",message);

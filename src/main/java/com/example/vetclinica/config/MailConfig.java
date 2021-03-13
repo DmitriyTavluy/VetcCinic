@@ -39,6 +39,7 @@ public class MailConfig {
 
         Properties properties = mailSender.getJavaMailProperties();
 
+        properties.put("mail.smtp.starttls.enable", "true");
         properties.setProperty("mail.transport.protocol", protocol);
         properties.setProperty("mail.debug", debug);
 

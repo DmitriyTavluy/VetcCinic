@@ -3,6 +3,7 @@ package com.example.vetclinica.controller;
 import com.example.vetclinica.domain.Role;
 import com.example.vetclinica.domain.User;
 import com.example.vetclinica.repos.UserRepos;
+import com.example.vetclinica.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
+    @Autowired
+    private UserService userService;
+
     @Autowired
     private UserRepos userRepos;
 
@@ -66,5 +70,20 @@ public class UserController {
         userRepos.deleteById(id);
         return "redirect:/user";
     }
+
+    @PostMapping("blockUser")
+    public String block(@RequestParam("id") User user, Map<String, Object> model){
+        user.setActive(false);
+        userService.saveUsers(user);
+        return "redirect:/user";
+    }
+
+    @PostMapping("unblockUser")
+    public String unblock(@RequestParam("id") User user, Map<String, Object> model){
+        user.setActive(true);
+        userService.saveUsers(user);
+        return "redirect:/user";
+    }
+
 
 }

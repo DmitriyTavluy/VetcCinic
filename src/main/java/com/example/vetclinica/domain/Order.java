@@ -1,11 +1,7 @@
 package com.example.vetclinica.domain;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "orders")

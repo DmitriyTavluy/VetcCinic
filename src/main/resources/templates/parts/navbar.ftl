@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/user">Список пользователей</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/employee/o/export">Экспорт в файл</a>
+                </li>
 
             </#if>
             <#if isAuth>
